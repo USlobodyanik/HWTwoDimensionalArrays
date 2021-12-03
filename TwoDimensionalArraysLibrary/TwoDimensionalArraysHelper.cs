@@ -22,9 +22,9 @@ namespace TwoDimensionalArraysLibrary
 
         public static int FindMinimumInArray(int[,] array)
         {
-            if (array == null)
+            if (array == null || array.Length == 0)
             {
-                throw new Exception("Array is empty");
+                throw new Exception("Array is empty or Null");
             }
 
             int min = array[0, 0];
@@ -44,9 +44,9 @@ namespace TwoDimensionalArraysLibrary
 
         public static int FindMinimumInArrayV2(int[,] array)
         {
-            if (array == null)
+            if (array == null || array.Length == 0)
             {
-                throw new Exception("Array is empty");
+                throw new Exception("Array is empty or Null");
             }
 
             (int minI, int minJ) = FindMinimumIndexInArray(array);
@@ -56,9 +56,9 @@ namespace TwoDimensionalArraysLibrary
 
         public static int FindMaximumInArray(int[,] array)
         {
-            if (array == null)
+            if (array == null || array.Length == 0)
             {
-                throw new Exception("Array is empty");
+                throw new Exception("Array is empty or Null");
             }
 
             int max = array[0, 0];
@@ -78,9 +78,9 @@ namespace TwoDimensionalArraysLibrary
 
         public static int FindMaximumInArrayV2(int[,] array)
         {
-            if (array == null)
+            if (array == null || array.Length == 0)
             {
-                throw new Exception("Array is empty");
+                throw new Exception("Array is empty or Null");
             }
 
             (int maxI, int maxJ) = FindMaximumIndexInArray(array);
@@ -90,9 +90,9 @@ namespace TwoDimensionalArraysLibrary
 
         public static (int, int) FindMinimumIndexInArray(int[,] array)
         {
-            if (array == null)
+            if (array == null || array.Length == 0)
             {
-                throw new Exception("Array is empty");
+                throw new Exception("Array is empty or Null");
             }
 
             int minI = 0;
@@ -116,9 +116,9 @@ namespace TwoDimensionalArraysLibrary
 
         public static (int, int) FindMaximumIndexInArray(int[,] array)
         {
-            if (array == null)
+            if (array == null || array.Length == 0)
             {
-                throw new Exception("Array is empty");
+                throw new Exception("Array is empty or Null");
             }
 
             int maxI = 0;
@@ -142,6 +142,11 @@ namespace TwoDimensionalArraysLibrary
 
         public static int CounterValueIsLargerNeighbors(int[,] array)
         {
+            if (array == null || array.Length == 0)
+            {
+                throw new Exception("Array is empty or Null");
+            }
+
             int count = 0;
             for (int i = 0; i < array.GetLength(0); i++)
             {
@@ -154,7 +159,8 @@ namespace TwoDimensionalArraysLibrary
                         {
                             count++;
                         }
-                    } else if (i == array.GetLength(0) - 1 && j == array.GetLength(1) - 1)
+                    }
+                    else if (i == array.GetLength(0) - 1 && j == array.GetLength(1) - 1)
                     {
                         if (array[i, j] > array[i - 1, j] &&
                             array[i, j] > array[i, j - 1])
@@ -163,30 +169,48 @@ namespace TwoDimensionalArraysLibrary
                         }
                     }
 
-                    if (i > 0 && j > 0 && i < array.GetLength(0) - 1 && j < array.GetLength(1) - 1)
+                    if (i == 0 && j > 0 && j < array.GetLength(1) - 1)
                     {
-                        if (array[i, j] > array[i - 1, j] &&
-                            array[i, j] > array[i + 1, j] &&
+                        if (array[i, j] > array[i + 1, j] &&
                             array[i, j] > array[i, j - 1] &&
                             array[i, j] > array[i, j + 1])
                         {
                             count++;
                         }
                     }
-
-                    if (i == 0 && j > 0 && i < array.GetLength(0) - 1 && j < array.GetLength(1) - 1)
+                    else if (i == 0 && j == array.GetLength(1) - 1)
                     {
-                        if (array[i, j] > array[i, j - 1] &&
-                            array[i, j] > array[i, j + 1] &&
-                            array[i, j] > array[i + 1, j])
+                        if (array[i, j] > array[i + 1, j] &&
+                            array[i, j] > array[i, j - 1])
                         {
                             count++;
                         }
-                    }else if (i > 0 && j == 0 && i < array.GetLength(0) - 1 && j < array.GetLength(1) - 1)
+                    }
+
+                    if (j == 0 && i > 0 && i < array.GetLength(0) - 1)
+                    {
+                        if (array[i, j] > array[i, j + 1] &&
+                            array[i, j] > array[i + 1, j] &&
+                            array[i, j] > array[i - 1, j])
+                        {
+                            count++;
+                        }
+                    }
+                    else if (j == 0 && i == array.GetLength(0) - 1)
+                    {
+                        if (array[i, j] > array[i, j + 1] &&
+                            array[i, j] > array[i - 1, j])
+                        {
+                            count++;
+                        }
+                    }
+
+                    if (i > 0 && j > 0 && j < array.GetLength(1) - 1 && j < array.GetLength(1) - 1)
                     {
                         if (array[i, j] > array[i - 1, j] &&
-                            array[i, j] > array[i, j + 1] &&
-                            array[i, j] > array[i + 1, j])
+                            array[i, j] > array[i + 1, j] &&
+                            array[i, j] > array[i, j - 1] &&
+                            array[i, j] > array[i, j + 1])
                         {
                             count++;
                         }

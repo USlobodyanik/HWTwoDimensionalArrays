@@ -9,8 +9,6 @@ namespace TwoDemensionalArrayConsole
         {
             int[,] array = TwoDimensionalArraysHelper.FillingArray(3, -20, 20);
             Console.WriteLine("Input array: ");
-
-            array = new int[3, 3] { { 3, 1, 6 }, { 2, 14, 5 }, { 3, 2, 9 } };
             for (int i = 0; i < array.GetLength(0); i++)
             {
                 for (int j = 0; j < array.GetLength(1); j++)
