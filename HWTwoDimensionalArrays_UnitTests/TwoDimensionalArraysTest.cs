@@ -15,7 +15,7 @@ namespace HWTwoDimensionalArrays_UnitTests
             }
             catch(Exception ex)
             {
-                Assert.AreEqual("Array is empty", ex.Message);
+                Assert.AreEqual("Array is empty or Null", ex.Message);
             }
         }
 
@@ -91,6 +91,31 @@ namespace HWTwoDimensionalArrays_UnitTests
             new object[]
             {
                 new int[,]{ { -5, 0, 1 }, { 2, 4, 12 }, { -10, 12, -2 } }, ( 1, 2 )
+            },
+        };
+
+        [TestCaseSource(nameof(CounterValueIsLargerNeighbors))]
+        public void CounterValueIsLargerNeighbors_WhenFilledArrayPassed_ShouldCountNumbersGreaterNeighbors
+            (int[,] array, int expected)
+        {
+            int result = TwoDimensionalArraysHelper.CounterValueIsLargerNeighbors(array);
+
+            Assert.AreEqual(expected, result);
+        }
+
+        static readonly object[] CounterValueIsLargerNeighbors =
+        {
+            new object[]
+            {
+                new int[,]{ { 25, 0, 1 }, { 2, 4, 6 }, { 10, -1, -2 } }, 2
+            },
+            new object[]
+            {
+                new int[,]{ { -5, 24, 1 }, { 2, 14, -6 }, { 1, -1, -2 } }, 1
+            },
+            new object[]
+            {
+                new int[,]{ { 0, -1, 3, -2 }, { -4, 4, 1, 3 }, { 6, -3, 8, 7 }, { 10, 4, -7, 1 } }, 5
             },
         };
     }

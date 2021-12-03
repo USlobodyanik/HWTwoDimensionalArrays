@@ -205,7 +205,7 @@ namespace TwoDimensionalArraysLibrary
                         }
                     }
 
-                    if (i > 0 && j > 0 && j < array.GetLength(1) - 1 && j < array.GetLength(1) - 1)
+                    if (i > 0 && j > 0 && i < array.GetLength(0) - 1 && j < array.GetLength(1) - 1)
                     {
                         if (array[i, j] > array[i - 1, j] &&
                             array[i, j] > array[i + 1, j] &&

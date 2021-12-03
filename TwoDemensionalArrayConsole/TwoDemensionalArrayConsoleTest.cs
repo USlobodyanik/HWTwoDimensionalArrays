@@ -7,7 +7,8 @@ namespace TwoDemensionalArrayConsole
     {
         static void Main(string[] args)
         {
-            int[,] array = TwoDimensionalArraysHelper.FillingArray(3, -20, 20);
+            int[,] array = TwoDimensionalArraysHelper.FillingArray(4, -20, 20);
+            array = new int[,] { { 0, -1, 3, -2 }, { -4, 4, 1, 3 }, { 6, -3, 8, 7 } };
             Console.WriteLine("Input array: ");
             for (int i = 0; i < array.GetLength(0); i++)
             {
