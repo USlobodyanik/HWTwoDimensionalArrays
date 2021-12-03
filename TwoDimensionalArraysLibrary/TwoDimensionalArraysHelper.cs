@@ -4,9 +4,9 @@ namespace TwoDimensionalArraysLibrary
 {
     public class TwoDimensionalArraysHelper
     {
-        public static int[,] FillingArray(int size = 4,int startRandomNumber = -20, int lastRandomNumber = 20)
+        public static int[,] FillingArray(int size = 4, int startRandomNumber = -20, int lastRandomNumber = 20)
         {
-            
+
             int[,] array = new int[size, size];
             Random random = new Random();
             for (int i = 0; i < array.GetLength(0); i++)
@@ -138,6 +138,63 @@ namespace TwoDimensionalArraysLibrary
             }
 
             return (maxI, maxJ);
+        }
+
+        public static int CounterValueIsLargerNeighbors(int[,] array)
+        {
+            int count = 0;
+            for (int i = 0; i < array.GetLength(0); i++)
+            {
+                for (int j = 0; j < array.GetLength(1); j++)
+                {
+                    if (i == 0 && j == 0)
+                    {
+                        if (array[i, j] > array[i + 1, j] &&
+                            array[i, j] > array[i, j + 1])
+                        {
+                            count++;
+                        }
+                    } else if (i == array.GetLength(0) - 1 && j == array.GetLength(1) - 1)
+                    {
+                        if (array[i, j] > array[i - 1, j] &&
+                            array[i, j] > array[i, j - 1])
+                        {
+                            count++;
+                        }
+                    }
+
+                    if (i > 0 && j > 0 && i < array.GetLength(0) - 1 && j < array.GetLength(1) - 1)
+                    {
+                        if (array[i, j] > array[i - 1, j] &&
+                            array[i, j] > array[i + 1, j] &&
+                            array[i, j] > array[i, j - 1] &&
+                            array[i, j] > array[i, j + 1])
+                        {
+                            count++;
+                        }
+                    }
+
+                    if (i == 0 && j > 0 && i < array.GetLength(0) - 1 && j < array.GetLength(1) - 1)
+                    {
+                        if (array[i, j] > array[i, j - 1] &&
+                            array[i, j] > array[i, j + 1] &&
+                            array[i, j] > array[i + 1, j])
+                        {
+                            count++;
+                        }
+                    }else if (i > 0 && j == 0 && i < array.GetLength(0) - 1 && j < array.GetLength(1) - 1)
+                    {
+                        if (array[i, j] > array[i - 1, j] &&
+                            array[i, j] > array[i, j + 1] &&
+                            array[i, j] > array[i + 1, j])
+                        {
+                            count++;
+                        }
+                    }
+                }
+            }
+
+            return count;
         }
     }
 }
